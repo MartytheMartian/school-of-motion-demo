@@ -23,6 +23,6 @@ function subscription(input) {
   };
 }
 
-export default {
+module.exports = {
   subscription: subscription
 };

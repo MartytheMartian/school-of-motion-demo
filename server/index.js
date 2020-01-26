@@ -12,7 +12,7 @@ const HOST = "0.0.0.0";
 const MongoClient = mongo.MongoClient;
 
 // Connect to the Mongo instance.
-MongoClient.connect("localhost:27017/school-of-motion", (err, client) => {
+MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) => {
   // Quit if an error occurred.
   if (err) {
     console.log("A problem occurred while trying to connect to Mongo");
@@ -106,6 +106,9 @@ MongoClient.connect("localhost:27017/school-of-motion", (err, client) => {
       res.sendStatus(200);
     });
   });
+
+  // Serve static files found in the "public" directory.
+  app.use(express.static("public"));
 
   // Start listening.
   app.listen(PORT, HOST);
