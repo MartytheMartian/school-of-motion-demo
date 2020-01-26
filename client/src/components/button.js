@@ -17,7 +17,7 @@ const Button = styled.div`
       return p.disabled ? p.theme.alertHover : p.theme.alert;
     }
 
-    return p.disabled ? p.theme.primaryHover : p.theme.primary;
+    return p.disabled ? p.theme.secondaryHover : p.theme.secondary;
   }};
   color: white;
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),
@@ -26,7 +26,7 @@ const Button = styled.div`
   cursor: ${p => p.disabled ? "default" : "pointer"};
 
   &:hover {
-    background-color: ${p => p.alert ? p.theme.alertHover : p.theme.primaryHover}
+    background-color: ${p => p.alert ? p.theme.alertHover : p.theme.secondaryHover}
   }
 `;
 

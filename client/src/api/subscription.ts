@@ -7,5 +7,5 @@ export class Subscription {
     }
 };
 
-export const listSubscriptions = async (): Promise<Subscription[]> =>
+export const list = async (): Promise<Subscription[]> =>
     Do<Subscription[]>(new Request("/subscription", Method.Get));

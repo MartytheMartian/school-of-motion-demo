@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Panel = styled.div`
   display: flex;
+  position: relative;
   justify-content: center;
   padding: 20px 0;
   background-color: ${p => p.theme.primary};

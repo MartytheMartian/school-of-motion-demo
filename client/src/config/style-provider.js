@@ -7,6 +7,8 @@ const theme = {
   primary: "#253C78",
   primaryHover: "#253C78",
   primaryInverse: "#FFFFFFF",
+  secondary: "#314f9b",
+  secondaryHover: "#263D77",
   alert: "#C44A46",
   alertHover: "#C44A46DD",
   trim: "FFFFFF80",

@@ -1,6 +1,7 @@
 // Import dependencies.
-const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const express = require("express");
 const mongo = require("mongodb");
 const objects = require("./objects");
 
@@ -35,13 +36,14 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
     extended: true
   }));
 
-  // Route used to serve the application.
-  app.get("/", res => {
-    res.send("Hello, School of Motion!");
-  });
+  // Use CORS for cross-origin requests.
+  // Theoretically this can be removed when
+  // development is over, because that is the only
+  // reason it is here. More than likely though, I'll forget.
+  app.use(cors());
 
   // Gets the subscription list.
-  app.get("/subscription", res => {
+  app.get("/subscription", (req, res) => {
     // Get the subscriptions.
     db.collection("subscriptions").find().toArray((err, result) => {
       // there was a problem getting the subscriptions.
@@ -55,7 +57,7 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
       const subscriptions = result.map(dbSubscription => objects.subscription(dbSubscription));
 
       // Return the subscriptions.
-      res.send(subscriptions);
+      res.json(subscriptions);
     });
   });
 
@@ -109,6 +111,13 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
 
   // Serve static files found in the "public" directory.
   app.use(express.static("public"));
+
+  // Append cross-origin related headers to every response.
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
   // Start listening.
   app.listen(PORT, HOST);

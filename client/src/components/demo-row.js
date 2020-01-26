@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Button from "./button";
+
 const DemoRow = styled.div`
   display: flex;
   justify-content: row;
@@ -15,7 +17,7 @@ export default ({ course, firstName, lastName, onSubmit, style }) =>
     <div style={{ width: "30%" }}>{course}</div>
     <div style={{ width: "20%" }}>
       {
-        onSubmit ? "Submit" : undefined
+        onSubmit ? <Button onClick={onSubmit}>Submit</Button> : undefined
       }
     </div>
   </DemoRow >

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Panel from "../components/panel";
 
 import List from "./list";
 import Signup from "./signup";

@@ -1,15 +1,15 @@
 import { setError, setResolution, setSubscriptions } from "./creators";
 import Resolution from "../constants/resolution";
-import { listSubscriptions } from "../api/subscription";
+import { list } from "../api/subscription";
 
 // Gets a subscription list and sets it in state.
-export const listSubscriptions = () => async (dispatch) => {
+export async function listSubscriptions(dispatch) {
   try {
     // Set resolution status for subscriptions.
     dispatch(setResolution(Resolution.Subscriptions, true));
 
     // Perform the request.
-    const subscriptions = await listSubscriptions();
+    const subscriptions = await list();
 
     // Set the subscriptions in state.
     dispatch(setSubscriptions(subscriptions));
