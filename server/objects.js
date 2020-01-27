@@ -20,7 +20,7 @@ function subscription(input) {
   }
 
   // Check that the course exists and is valid.
-  if (!input.course || !VALID_COURSES.includes(input.course)) {
+  if (!VALID_COURSES.includes(input.course)) {
     return null;
   }
 

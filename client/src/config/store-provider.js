@@ -17,10 +17,12 @@ export default function ({ children }) {
 
   // Build the initial state.
   const initialState = {
+    course: 0,
     error: null,
     firstName: "",
     lastName: "",
     resolving: {
+      [Resolution.Creation]: null,
       [Resolution.Subscriptions]: null
     },
     subscriptions: []

@@ -6,7 +6,7 @@ import DemoRow from "../components/demo-row";
 import Courses from "../constants/courses";
 import Resolution from "../constants/resolution";
 import { getResolution, getSubscriptions } from "../state/selectors";
-import { listSubscriptions } from "../state/thunks";
+import { listSubscriptions } from "../state/api";
 
 const List = styled.div`
   height: 200px;
@@ -50,11 +50,11 @@ export default () => {
       <DemoRow firstName="First Name" lastName="Last Name" course="Course" style={{ fontSize: ".8em" }} />
       <List>
         {
-          hasSubscriptions ? subscriptions.map(subscription => <DemoRow firstName={subscription.firstName}
-            lastName={subscription.lastName} course={Courses[subscription.course]} />) :
+          hasSubscriptions ? subscriptions.map((subscription, index) => <DemoRow key={index}
+            firstName={subscription.firstName} lastName={subscription.lastName} course={Courses[subscription.course]} />) :
             <div className="no-courses">
               No courses. :(
-                <br />
+              <br />
               Change that by following the instructions above!
             </div>
         }

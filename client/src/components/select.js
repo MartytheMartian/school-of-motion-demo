@@ -12,8 +12,8 @@ const Select = styled.select`
   font-size: .8em;
 `;
 
-export default ({ onChange, options, value }) =>
-  <Select value={value} onChange={onChange}>
+export default ({ disabled, onChange, options, value }) =>
+  <Select disabled={disabled} value={value} onChange={e => onChange(options[e.target.selectedIndex].id)}>
     {
       !options ? undefined : options.map(option =>
         <option key={option.id} value={option.value}>

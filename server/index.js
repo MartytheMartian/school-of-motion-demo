@@ -36,6 +36,8 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
     extended: true
   }));
 
+  app.use(bodyParser.json());
+
   // Use CORS for cross-origin requests.
   // Theoretically this can be removed when
   // development is over, because that is the only
@@ -71,7 +73,7 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
     }
 
     // Save the subscription information.
-    db.collection("subscriptions").save(subscription, (err, result) => {
+    db.collection("subscriptions").insertOne(subscription, (err, result) => {
       // There was a problem writing the subscription.
       if (err) {
         console.log("A problem occurred while saving a subscription");
@@ -118,6 +120,24 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+
+  // Every five minutes completely clear the subscriptions collection.
+  function clearCollection() {
+    setTimeout(() => {
+      // Delete the records.
+      db.collection("subscriptions").deleteMany({}, err => {
+        // There was a problem deleting the subscription.
+        if (err) {
+          console.log("A problem occurred while clearing the subscriptions");
+        }
+      });
+
+      clearCollection();
+    }, 300000);
+  }
+
+  // Initiate auto-cleanup
+  clearCollection();
 
   // Start listening.
   app.listen(PORT, HOST);

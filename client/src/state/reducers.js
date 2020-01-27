@@ -52,6 +52,11 @@ function resolvingReducer(state = null, action) {
 
 function subscriptionsReducer(state = null, action) {
   switch (action.type) {
+    case Types.SUBSCRIPTION_SET:
+      return [
+        action.subscription,
+        ...state
+      ];
     case Types.SUBSCRIPTIONS_SET:
       return action.subscriptions;
     default:
@@ -62,6 +67,7 @@ function subscriptionsReducer(state = null, action) {
 // Combine each reducer.
 export default combineReducers({
   error: errorReducer,
+  course: courseReducer,
   firstName: firstNameReducer,
   lastName: lastNameReducer,
   resolving: resolvingReducer,

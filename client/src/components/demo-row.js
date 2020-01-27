@@ -10,14 +10,14 @@ const DemoRow = styled.div`
   min-height: 40px;
 `;
 
-export default ({ course, firstName, lastName, onSubmit, style }) =>
+export default ({ course, disabled, firstName, lastName, onSubmit, style }) =>
   <DemoRow style={style}>
     <div style={{ width: "25%" }}>{firstName}</div>
     <div style={{ width: "25%" }}>{lastName}</div>
     <div style={{ width: "30%" }}>{course}</div>
     <div style={{ width: "20%" }}>
       {
-        onSubmit ? <Button onClick={onSubmit}>Submit</Button> : undefined
+        onSubmit ? <Button disabled={disabled} onClick={onSubmit}>Submit</Button> : undefined
       }
     </div>
   </DemoRow >

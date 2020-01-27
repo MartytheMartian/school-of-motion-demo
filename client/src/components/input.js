@@ -11,5 +11,6 @@ const Input = styled.input`
   font-size: .8em;
 `;
 
-export default ({ onChange, placeholder, value }) =>
-  <Input type="text" placeholder={placeholder} value={value} onChange={onChange} />
+export default ({ disabled, onChange, placeholder, value }) =>
+  <Input type="text" placeholder={placeholder} value={value}
+    disabled={disabled} onChange={e => onChange(e.target.value)} />;
