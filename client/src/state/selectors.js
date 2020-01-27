@@ -1,3 +1,4 @@
+export const getCourse = state => state.course;
 export const getError = state => state.error;
 export const getFirstName = state => state.firstName;
 export const getLastName = state => state.lastName;

@@ -14,16 +14,14 @@ const CourseOptions = Object.keys(Courses).map(key => ({
   value: Courses[key]
 }));
 
-const Signup = ({ resolvingSubscriptions }) =>
-  <DemoRow
-    firstName={<Input placeholder="First Name" />}
-    lastName={<Input placeholder="Last Name" />}
-    course={<Select value={Courses[1]} options={CourseOptions} onChange={e => console.log(e)} />}
-    onSubmit={() => { alert('test') }}
-  />;
+export default () => {
 
-const mapStateToProps = state => ({
-  resolvingSubscriptions: getResolution(Resolution.Subscriptions, state)
-});
-
-export default connect(mapStateToProps)(Signup);
+  return (
+    <DemoRow
+      firstName={<Input placeholder="First Name" />}
+      lastName={<Input placeholder="Last Name" />}
+      course={<Select value={Courses[1]} options={CourseOptions} onChange={e => console.log(e)} />}
+      onSubmit={() => { alert('test') }}
+    />
+  );
+};

@@ -7,6 +7,7 @@ function createAction(type, payload) {
   };
 }
 
+export const setCourse = course => createAction(Types.COURSE_SET, { course });
 export const setError = error => createAction(Types.ERROR_SET, { error });
 export const setFirstName = firstName => createAction(Types.FIRST_NAME_SET, { firstName });
 export const setLastName = lastName => createAction(Types.LAST_NAME_SET, { lastName });

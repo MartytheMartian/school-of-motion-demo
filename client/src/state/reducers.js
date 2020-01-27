@@ -2,6 +2,15 @@ import { combineReducers } from "redux";
 
 import * as Types from "./constants";
 
+function courseReducer(state = null, action) {
+  switch (action.type) {
+    case Types.COURSE_SET:
+      return action.course;
+    default:
+      return state;
+  }
+}
+
 function errorReducer(state = null, action) {
   switch (action.type) {
     // case Types.ERROR_SET:

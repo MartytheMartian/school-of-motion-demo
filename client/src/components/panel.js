@@ -6,8 +6,6 @@ const Panel = styled.div`
   position: relative;
   justify-content: center;
   padding: 20px 0;
-  background-color: ${p => p.theme.primary};
-  color: white;
 
   .panel-body {
     font-size: 1.25em;
@@ -25,8 +23,8 @@ const Panel = styled.div`
   }
 `;
 
-export default ({ title, children }) =>
-  <Panel>
+export default ({ title, children, style, className }) =>
+  <Panel style={style} className={className}>
     <div className="panel-content">
       <div className="panel-title">
         {title}

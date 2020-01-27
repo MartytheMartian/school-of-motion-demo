@@ -10,6 +10,11 @@ const CustomerQuote = styled.div`
   font-size: .8em;
 `;
 
+const Demo = styled(Panel)`
+  background-color: ${p => p.theme.primary};
+  color: white;
+`;
+
 const Explanation = styled.div`
   margin-bottom: 20px;
 `;
@@ -17,7 +22,7 @@ const Explanation = styled.div`
 export default ({ children, loading }) =>
   <div style={{ position: "relative" }}>
     <Loading loading={loading} />
-    <Panel title="Course Registration Demo">
+    <Demo title="Course Registration Demo">
       <Explanation>
         Dive in to a world of learning by signing up for your first course.
         If you've already experienced one of our awesome courses,
@@ -28,5 +33,5 @@ export default ({ children, loading }) =>
       <CustomerQuote>
         "I signed up for a course and instantly became a genius before I even got my first lesson!" - A real customer
     </CustomerQuote>
-    </Panel>
+    </Demo>
   </div>;
