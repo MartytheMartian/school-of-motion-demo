@@ -24,6 +24,7 @@ export default function ({ children }) {
     lastName: "",
     resolving: {
       [Resolution.Creation]: null,
+      [Resolution.Deletion]: null,
       [Resolution.Subscriptions]: null
     },
     subscriptions: []

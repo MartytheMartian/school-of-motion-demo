@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Button from "./button";
+import Loading from "./loading";
 
 const DemoRow = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const DemoRow = styled.div`
   }
 `;
 
-export default ({ course, disabled, firstName, hover, lastName, onDelete, onSubmit, style }) => {
+export default ({ course, disabled, firstName, hover, lastName, onDelete, onSubmit, submitting, style }) => {
   const itemClass = hover ? "item" : undefined;
   return (
     <DemoRow style={style} hover={hover} onClick={onDelete ? onDelete : undefined} deletable={onDelete !== undefined}>
@@ -32,7 +33,12 @@ export default ({ course, disabled, firstName, hover, lastName, onDelete, onSubm
       <div className={itemClass} style={{ width: "30%" }}>{course}</div>
       <div style={{ width: "20%" }}>
         {
-          onSubmit ? <Button disabled={disabled} onClick={onSubmit}>Submit</Button> : undefined
+          onSubmit ?
+          <Button disabled={disabled || submitting} onClick={onSubmit}>
+            {
+              submitting ? <Loading loading small /> : "Submit"
+            }
+          </Button> : undefined
         }
       </div>
     </DemoRow >);

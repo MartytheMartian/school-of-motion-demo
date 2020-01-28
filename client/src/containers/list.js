@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import DemoRow from "../components/demo-row";
+import Hover from "../components/hover";
+import Loading from "../components/loading";
 import Courses from "../constants/courses";
 import Resolution from "../constants/resolution";
 import { setDelete } from "../state/creators";
@@ -51,6 +53,9 @@ export default () => {
 
   return (
     <Fragment>
+      <Hover visible={subscriptionResolution === true}>
+        <Loading loading fullscreen />
+      </Hover>
       <DemoRow firstName="First Name" lastName="Last Name" course="Course" style={{ fontSize: ".8em" }} />
       <List>
         {

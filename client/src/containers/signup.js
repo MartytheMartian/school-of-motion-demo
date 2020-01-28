@@ -20,6 +20,7 @@ export default () => {
   // Selectors.
   const submitEnabled = useSelector(canSubmit);
   const request = useSelector(createRequest);
+  const creationResolution = useSelector(state => getResolution(Resolution.Creation, state));
   const subscriptionResolution = useSelector(state => getResolution(Resolution.Subscriptions, state));
 
   // Break the request apart.
@@ -34,6 +35,7 @@ export default () => {
   return (
     <DemoRow
       disabled={!submitEnabled}
+      submitting={creationResolution === true}
       firstName={
         <Input placeholder="First Name" value={firstName} disabled={disabled}
           onChange={value => { dispatch(setFirstName(value)); }} />
@@ -46,7 +48,7 @@ export default () => {
         <Select value={Courses[course]} options={CourseOptions} disabled={disabled}
           onChange={value => { dispatch(setCourse(value)); }} />
       }
-      onSubmit={async () => { await postSubscription(dispatch, request); }}
+      onSubmit={() => postSubscription(dispatch, request)}
     />
   );
 };

@@ -4,9 +4,11 @@ import styled from "styled-components";
 
 import Button from "../components/button";
 import Hover from "../components/hover";
+import Loading from "../components/loading";
+import Resolution from "../constants/resolution";
 import { deleteSubscription } from "../state/api";
 import { cancelDelete } from "../state/creators";
-import { getDelete } from "../state/selectors";
+import { getDelete, getResolution } from "../state/selectors";
 
 const DeleteSubscription = styled.div`
   display: flex;
@@ -38,6 +40,8 @@ const DeleteSubscription = styled.div`
 export default ({ }) => {
   // Selectors.
   const id = useSelector(getDelete);
+  const resolving = useSelector(state => getResolution(Resolution.Deletion, state));
+  const disabled = resolving === true;
 
   // Dispatch
   const dispatch = useDispatch();
@@ -53,8 +57,15 @@ export default ({ }) => {
             Are you sure you want to drop this course? Think of all the knowledge you would be missing out on!
             Just go ahead and click that "Cancel" button. It's what's best.
         </p>
-          <Button onClick={async () => await deleteSubscription(dispatch, id)} style={{ marginBottom: "10px" }} alert>Drop</Button>
-          <Button onClick={() => dispatch(cancelDelete())}>Cancel</Button>
+          <Button onClick={() => { deleteSubscription(dispatch, id); }}
+            style={{ marginBottom: "10px" }} alert disabled={disabled}>
+            {
+              disabled ? <Loading loading small /> : "Drop"
+            }
+          </Button>
+          <Button onClick={() => dispatch(cancelDelete())} disabled={disabled}>
+            Cancel
+          </Button>
         </div>
       </DeleteSubscription>
     </Hover>
