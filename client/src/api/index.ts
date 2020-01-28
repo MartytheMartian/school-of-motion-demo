@@ -33,7 +33,7 @@ export class Request implements RequestInit {
 
   constructor(route: string, method: Method, body?: object) {
     // Set standard properties.
-    this.url = "http://localhost" + route;
+    this.url = window.location.origin + route;
     this.method = method.toString();
 
     // Serialize the body.
