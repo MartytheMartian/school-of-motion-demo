@@ -12,3 +12,6 @@ export const list = async (): Promise<Subscription[]> =>
 
 export const post = async (subscription: Subscription): Promise<Subscription> =>
     Do<Subscription>(new Request("/subscription", Method.Post, subscription));
+
+export const del = async (id: number): Promise<void> =>
+    Do<void>(new Request("/subscription/" + id, Method.Delete));

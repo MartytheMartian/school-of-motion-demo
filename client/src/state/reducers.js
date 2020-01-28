@@ -11,6 +11,18 @@ function courseReducer(state = null, action) {
   }
 }
 
+function deleteReducer(state = null, action) {
+  switch (action.type) {
+    case Types.DELETE_CANCEL:
+    case Types.DELETE_CONFIRM:
+      return null;
+    case Types.DELETE_SET:
+      return action.id;
+    default:
+      return state;
+  }
+}
+
 function errorReducer(state = null, action) {
   switch (action.type) {
     // case Types.ERROR_SET:
@@ -52,6 +64,8 @@ function resolvingReducer(state = null, action) {
 
 function subscriptionsReducer(state = null, action) {
   switch (action.type) {
+    case Types.DELETE_CONFIRM:
+      return state.filter(subscription => subscription.id !== action.id);
     case Types.SUBSCRIPTION_SET:
       return [
         action.subscription,
@@ -66,6 +80,7 @@ function subscriptionsReducer(state = null, action) {
 
 // Combine each reducer.
 export default combineReducers({
+  deleteID: deleteReducer,
   error: errorReducer,
   course: courseReducer,
   firstName: firstNameReducer,

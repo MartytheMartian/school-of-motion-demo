@@ -1,5 +1,6 @@
 import React from "react";
 
+import DeleteSubscription from "./delete-subscription";
 import List from "./list";
 import Signup from "./signup";
 import Demo from "../components/demo";
@@ -10,4 +11,5 @@ export default ({ resolvingSubscriptions }) =>
     <Signup />
     <h4>Current Courses</h4>
     <List />
+    <DeleteSubscription />
   </Demo>;

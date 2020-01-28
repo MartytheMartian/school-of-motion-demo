@@ -18,6 +18,7 @@ export default function ({ children }) {
   // Build the initial state.
   const initialState = {
     course: 0,
+    deleteID: null,
     error: null,
     firstName: "",
     lastName: "",

@@ -21,6 +21,7 @@ export const createRequest = state => ({
   course: state.course
 });
 
+export const getDelete = state => state.deleteID;
 export const getError = state => state.error;
 export const getResolution = (resolution, state) => state.resolving[resolution];
 export const getSubscriptions = state => state.subscriptions;

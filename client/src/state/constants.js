@@ -1,4 +1,7 @@
 export const COURSE_SET = "COURSE_SET";
+export const DELETE_CANCEL = "DELETE_CANCEL";
+export const DELETE_CONFIRM = "DELETE_CONFIRM";
+export const DELETE_SET = "DELETE_SET";
 export const ERROR_SET = "ERROR_SET";
 export const FIRST_NAME_SET = "FIRST_NAME_SET";
 export const LAST_NAME_SET = "LAST_NAME_SET";

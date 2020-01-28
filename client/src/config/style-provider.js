@@ -10,7 +10,7 @@ const theme = {
   secondary: "#314f9b",
   secondaryHover: "#263D77",
   alert: "#C44A46",
-  alertHover: "#C44A46DD",
+  alertHover: "#ae3b38",
   trim: "FFFFFF80",
   trimShadow: "FFFFFF80"
 };

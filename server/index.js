@@ -81,11 +81,11 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
         return;
       }
 
+      // Map the object.
+      const mapped = objects.subscription(subscription);
+
       // Send the subscription with the ID included.
-      res.send({
-        ...subscription,
-        id: result._id
-      });
+      res.send(mapped);
     });
   });
 
@@ -99,7 +99,7 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
     }
 
     // Delete the record.
-    db.collection("subscriptions").findOneAndDelete({ _id: id }, (err, result) => {
+    db.collection("subscriptions").deleteOne({ _id: new mongo.ObjectId(id) }, (err, result) => {
       // There was a problem deleting the subscription.
       if (err) {
         console.log("A problem occurred while deleting a subscription");
@@ -107,7 +107,7 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
         return;
       }
 
-      res.sendStatus(200);
+      res.send(null);
     });
   });
 

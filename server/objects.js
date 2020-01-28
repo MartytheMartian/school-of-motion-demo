@@ -25,7 +25,7 @@ function subscription(input) {
   }
 
   return {
-    id: input._id ? input._id : undefined,
+    id: input._id ? input._id : input.id,
     firstName: input.firstName,
     lastName: input.lastName,
     course: input.course

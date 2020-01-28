@@ -64,7 +64,12 @@ export async function Do<T>(request: Request): Promise<T> {
     const response = await fetch(request.url, request as RequestInit);
 
     // Read the body.
-    const responseBody = await response.json();
+    let responseBody = null;
+    const unparsedBody = await response.text();
+    if (unparsedBody) {
+      responseBody = JSON.parse(unparsedBody);
+    }
+
 
     // Good response.
     if (response.ok) {
@@ -73,7 +78,7 @@ export async function Do<T>(request: Request): Promise<T> {
 
     // Read the message.
     statusCode = response.status;
-    const message = responseBody && responseBody.message ? responseBody.message : "Request Failed";
+    const message = responseBody ? responseBody : "Request Failed";
 
     throw new FetchError(message, request, statusCode);
   } catch (error) {

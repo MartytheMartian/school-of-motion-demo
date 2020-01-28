@@ -5,11 +5,14 @@ import styled from "styled-components";
 import DemoRow from "../components/demo-row";
 import Courses from "../constants/courses";
 import Resolution from "../constants/resolution";
+import { setDelete } from "../state/creators";
 import { getResolution, getSubscriptions } from "../state/selectors";
 import { listSubscriptions } from "../state/api";
 
 const List = styled.div`
-  height: 200px;
+  height: 204px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .no-courses {
     display: flex;
@@ -19,6 +22,7 @@ const List = styled.div`
     border: dashed 2px white;
     font-size: .9em;
     text-align: center;
+    box-sizing: border-box;
   }
 `;
 
@@ -50,8 +54,8 @@ export default () => {
       <DemoRow firstName="First Name" lastName="Last Name" course="Course" style={{ fontSize: ".8em" }} />
       <List>
         {
-          hasSubscriptions ? subscriptions.map((subscription, index) => <DemoRow key={index}
-            firstName={subscription.firstName} lastName={subscription.lastName} course={Courses[subscription.course]} />) :
+          hasSubscriptions ? subscriptions.map((subscription, index) => <DemoRow key={index} onDelete={() => { dispatch(setDelete(subscription.id)) }}
+            firstName={subscription.firstName} lastName={subscription.lastName} course={Courses[subscription.course]} hover />) :
             <div className="no-courses">
               No courses. :(
               <br />

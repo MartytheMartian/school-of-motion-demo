@@ -1,6 +1,6 @@
-import { setError, setResolution, setSubscription, setSubscriptions } from "./creators";
+import { confirmDelete, setError, setResolution, setSubscription, setSubscriptions } from "./creators";
 import Resolution from "../constants/resolution";
-import { list, post } from "../api/subscription";
+import { del, list, post } from "../api/subscription";
 
 // Gets a subscription list and sets it in state.
 export async function listSubscriptions(dispatch) {
@@ -37,5 +37,24 @@ export async function postSubscription(dispatch, request) {
   } finally {
     // Set resolution status for creation.
     dispatch(setResolution(Resolution.Creation, false));
+  }
+};
+
+// Deletes a subscription.
+export async function deleteSubscription(dispatch, id) {
+  try {
+    // Set resolution status for creation.
+    dispatch(setResolution(Resolution.Deletion, true));
+
+    // Perform the request.
+    await del(id);
+
+    // Confirm the deletion.
+    dispatch(confirmDelete(id));
+  } catch (error) {
+    dispatch(setError(error));
+  } finally {
+    // Set resolution status for creation.
+    dispatch(setResolution(Resolution.Deletion, false));
   }
 };
