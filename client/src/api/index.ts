@@ -35,7 +35,6 @@ export class Request implements RequestInit {
     // Set standard properties.
     this.url = "http://localhost" + route;
     this.method = method.toString();
-    this.mode = "cors";
 
     // Serialize the body.
     if (body) {

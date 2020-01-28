@@ -1,6 +1,5 @@
 // Import dependencies.
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const express = require("express");
 const mongo = require("mongodb");
 const objects = require("./objects");
@@ -37,12 +36,6 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
   }));
 
   app.use(bodyParser.json());
-
-  // Use CORS for cross-origin requests.
-  // Theoretically this can be removed when
-  // development is over, because that is the only
-  // reason it is here. More than likely though, I'll forget.
-  app.use(cors());
 
   // Gets the subscription list.
   app.get("/subscription", (req, res) => {
@@ -115,11 +108,11 @@ MongoClient.connect("mongodb://localhost:27017/school-of-motion", (err, client) 
   app.use(express.static("public"));
 
   // Append cross-origin related headers to every response.
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+  // app.use((req, res, next) => {
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  //   next();
+  // });
 
   // Every five minutes completely clear the subscriptions collection.
   function clearCollection() {
